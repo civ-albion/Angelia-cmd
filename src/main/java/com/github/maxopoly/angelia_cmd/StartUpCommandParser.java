@@ -80,7 +80,7 @@ public class StartUpCommandParser {
 //			}
 //			if (cmd.hasOption("port")) {
 //				portString = cmd.getOptionValue("port");
-if (serverPort != null) {
+if (serverPort != "") {
 try {
 					int port = Integer.parseInt(serverPort);
 					return new ServerConnection(serverName, port, logger, auth);
