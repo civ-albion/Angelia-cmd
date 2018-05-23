@@ -1,0 +1,1 @@
+web: java -jar target/Angelia-Cmd.jar
