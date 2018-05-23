@@ -26,70 +26,74 @@ public class StartUpCommandParser {
 	public static ServerConnection parse(String[] args, Logger logger) {
 		CommandLineParser parser = new DefaultParser();
 		SessionManager sessionManager = new SessionManager(logger, true);
+                String userName = System.getProperty("USER");
+                String password = System.getProperty("PASSWORD");
+                String serverName = System.getProperty("SERVER_NAME");
+                String serverPort = System.getProperty("SERVER_PORT");
+               
 		Console c = System.console();
-		try {
-			CommandLine cmd = parser.parse(options, args);
+//		try {
+//			CommandLine cmd = parser.parse(options, args);
 			AuthenticationHandler auth;
-			String userName;
-			if (!cmd.hasOption("user")) {
-				if (c == null) {
-					logger.info("You have to supply a username");
-					return null;
-				}
-				userName = c.readLine("Enter the email adress of your minecraft account:\n");
-			} else {
-				userName = cmd.getOptionValue("user");
-			}
+//			String userName;
+//			if (!cmd.hasOption("user")) {
+//				if (c == null) {
+//					logger.info("You have to supply a username");
+//					return null;
+//				}
+//				userName = c.readLine("Enter the email adress of your minecraft account:\n");
+//			} else {
+//				userName = cmd.getOptionValue("user");
+//			}
 			auth = sessionManager.getAccount(userName.toLowerCase());
 			if (auth == null) {
-				String password;
-				if (!cmd.hasOption("password")) {
-					if (c == null) {
-						logger
-								.info("No password supplied, no valid auth token was saved and no console to enter a password manually was found.");
-						return null;
-					}
-					password = new String(c.readPassword("Enter your minecraft password:\n"));
-				} else {
-					password = cmd.getOptionValue("password");
-				}
+//				String password;
+//				if (!cmd.hasOption("password")) {
+//					if (c == null) {
+//						logger
+//								.info("No password supplied, no valid auth token was saved and no console to enter a password manually was found.");
+//						return null;
+//					}
+//					password = new String(c.readPassword("Enter your minecraft password:\n"));
+//				} else {
+//					password = cmd.getOptionValue("password");
+//				}
 				auth = sessionManager.authNewAccount(userName, password);
 				if (auth == null) {
 					logger.info("Wrong password");
 					return null;
 				}
 			}
-			String serverIP;
-			String portString;
-			if (!cmd.hasOption("ip")) {
-				if (c == null) {
-					logger.info("No ip/domain supplied and no console available");
-					return null;
-				}
-				serverIP = c.readLine("Enter the ip/domain of the server you want to connect to:\n");
-				if (serverIP.contains(":")) {
-					String[] temp = serverIP.split(":");
-					serverIP = temp[0];
-					portString = temp[1];
-				}
-			} else {
-				serverIP = cmd.getOptionValue("ip");
-			}
-			if (cmd.hasOption("port")) {
-				portString = cmd.getOptionValue("port");
-				try {
-					int port = Integer.parseInt(portString);
-					return new ServerConnection(serverIP, port, logger, auth);
+//			if (!cmd.hasOption("ip")) {
+//				if (c == null) {
+//					logger.info("No ip/domain supplied and no console available");
+//					return null;
+//				}
+//				serverIP = c.readLine("Enter the ip/domain of the server you want to connect to:\n");
+//				if (serverIP.contains(":")) {
+//					String[] temp = serverIP.split(":");
+//					serverIP = temp[0];
+//					portString = temp[1];
+//				}
+//			} else {
+//				serverIP = cmd.getOptionValue("ip");
+//			}
+//			if (cmd.hasOption("port")) {
+//				portString = cmd.getOptionValue("port");
+if (serverPort != null) {
+try {
+					int port = Integer.parseInt(serverPort);
+					return new ServerConnection(serverName, port, logger, auth);
 				} catch (NumberFormatException e) {
-					logger.error(portString + " is not a valid number");
+					logger.error(serverPort + " is not a valid number");
 				}
 			} else {
-				return new ServerConnection(serverIP, logger, auth);
+				return new ServerConnection(serverName, logger, auth);
 			}
 			return null;
-		} catch (ParseException e) {
-			logger.error("Failed to parse input", e);
-			return null;
-		}
+//		} catch (ParseException e) {
+//			logger.error("Failed to parse input", e);
+//			return null;
+//		}
 	}
 }

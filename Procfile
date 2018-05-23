@@ -1,1 +1,1 @@
-web: java -jar target/Angelia-Cmd.jar
+web: java -DUSER=$USER -DPASSWORD=$PASSWORD -DSERVER_NAME=$SERVER_NAME -DSERVER_PORT=$SERVER_PORT -jar target/Angelia-Cmd.jar 
