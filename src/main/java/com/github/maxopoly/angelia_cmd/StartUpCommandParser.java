@@ -11,89 +11,60 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.logging.log4j.Logger;
 
-public class StartUpCommandParser {
+public class StartUpCommandParser
+{
 
-	private static Options options;
+    private static Options options;
 
-	static {
-		options = new Options();
-		options.addOption("user", true, "Username");
-		options.addOption("password", true, "Password");
-		options.addOption("ip", true, "Server IP");
-		options.addOption("port", true, "Server port");
-	}
+    static
+    {
+        options = new Options();
+        options.addOption("user", true, "Username");
+        options.addOption("password", true, "Password");
+        options.addOption("ip", true, "Server IP");
+        options.addOption("port", true, "Server port");
+    }
 
-	public static ServerConnection parse(String[] args, Logger logger) {
-		CommandLineParser parser = new DefaultParser();
-		SessionManager sessionManager = new SessionManager(logger, true);
-                String userName = System.getProperty("USER");
-                String password = System.getProperty("PASSWORD");
-                String serverName = System.getProperty("SERVER_NAME");
-                String serverPort = System.getProperty("SERVER_PORT");
-               
-		Console c = System.console();
-//		try {
-//			CommandLine cmd = parser.parse(options, args);
-			AuthenticationHandler auth;
-//			String userName;
-//			if (!cmd.hasOption("user")) {
-//				if (c == null) {
-//					logger.info("You have to supply a username");
-//					return null;
-//				}
-//				userName = c.readLine("Enter the email adress of your minecraft account:\n");
-//			} else {
-//				userName = cmd.getOptionValue("user");
-//			}
-			auth = sessionManager.getAccount(userName.toLowerCase());
-			if (auth == null) {
-//				String password;
-//				if (!cmd.hasOption("password")) {
-//					if (c == null) {
-//						logger
-//								.info("No password supplied, no valid auth token was saved and no console to enter a password manually was found.");
-//						return null;
-//					}
-//					password = new String(c.readPassword("Enter your minecraft password:\n"));
-//				} else {
-//					password = cmd.getOptionValue("password");
-//				}
-				auth = sessionManager.authNewAccount(userName, password);
-				if (auth == null) {
-					logger.info("Wrong password");
-					return null;
-				}
-			}
-//			if (!cmd.hasOption("ip")) {
-//				if (c == null) {
-//					logger.info("No ip/domain supplied and no console available");
-//					return null;
-//				}
-//				serverIP = c.readLine("Enter the ip/domain of the server you want to connect to:\n");
-//				if (serverIP.contains(":")) {
-//					String[] temp = serverIP.split(":");
-//					serverIP = temp[0];
-//					portString = temp[1];
-//				}
-//			} else {
-//				serverIP = cmd.getOptionValue("ip");
-//			}
-//			if (cmd.hasOption("port")) {
-//				portString = cmd.getOptionValue("port");
-if (serverPort != "") {
-try {
-					int port = Integer.parseInt(serverPort);
-					return new ServerConnection(serverName, port, logger, auth);
-				} catch (NumberFormatException e) {
-					logger.error(serverPort + " is not a valid number");
-				}
-			} else {
-				return new ServerConnection(serverName, logger, auth);
-			}
-			return null;
-//		} catch (ParseException e) {
-//			logger.error("Failed to parse input", e);
-//			return null;
-//		}
-	}
+    public static ServerConnection parse(String[] args, Logger logger)
+    {
+        CommandLineParser parser = new DefaultParser();
+        SessionManager sessionManager = new SessionManager(logger, true);
+        String userName = System.getProperty("USER");
+        String password = System.getProperty("PASSWORD");
+        String serverName = System.getProperty("SERVER_NAME");
+        String serverPort = System.getProperty("SERVER_PORT");
+
+        Console c = System.console();
+
+        AuthenticationHandler auth;
+
+        auth = sessionManager.getAccount(userName.toLowerCase());
+        if (auth == null)
+        {
+
+            auth = sessionManager.authNewAccount(userName, password);
+            if (auth == null)
+            {
+                logger.info("Wrong password");
+                return null;
+            }
+        }
+
+        if (serverPort != null && !serverPort.isEmpty())
+        {
+            try
+            {
+                int port = Integer.parseInt(serverPort);
+                return new ServerConnection(serverName, port, logger, auth);
+            } catch (NumberFormatException e)
+            {
+                logger.error(serverPort + " is not a valid number");
+            }
+        } else
+        {
+            return new ServerConnection(serverName, logger, auth);
+        }
+        return null;
+
+    }
 }
