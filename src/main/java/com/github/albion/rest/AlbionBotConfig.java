@@ -24,7 +24,7 @@ public class AlbionBotConfig
     {
         try
         {
-            URI uri = new URI(System.getProperty("REDISCLOUD_URL"));
+            URI uri = new URI(System.getEnv("REDISCLOUD_URL"));
             java.util.logging.Logger.getLogger(AlbionBotConfig.class.getName()).severe(uri.toString());
             JedisConnectionFactory factory = new JedisConnectionFactory();
             factory.setHostName(uri.getHost());
@@ -52,7 +52,7 @@ public class AlbionBotConfig
     public @Bean
     MongoClientURI mongoClientURI()
     {
-        return new MongoClientURI(System.getProperty("MONGODB_URI"));
+        return new MongoClientURI(System.getEnv("MONGODB_URI"));
     }
 
     public @Bean
