@@ -1,4 +1,4 @@
-package com.github.maxopoly.angelia_cmd;
+package com.github.albion.rest;
 
 import com.github.maxopoly.angeliacore.SessionManager;
 import com.github.maxopoly.angeliacore.connection.ServerConnection;

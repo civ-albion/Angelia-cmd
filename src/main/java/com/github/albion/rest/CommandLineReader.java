@@ -1,6 +1,6 @@
-package com.github.maxopoly.angelia_cmd;
+package com.github.albion.rest;
 
-import com.github.maxopoly.angelia_cmd.command_handling.CommandHandler;
+import com.github.albion.rest.command_handling.CommandHandler;
 import com.github.maxopoly.angeliacore.connection.ActiveConnectionManager;
 import com.github.maxopoly.angeliacore.connection.ServerConnection;
 import com.github.maxopoly.angeliacore.connection.play.packets.out.ChatPacket;

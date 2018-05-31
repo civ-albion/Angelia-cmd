@@ -1,4 +1,4 @@
-package com.github.maxopoly.angelia_cmd.command_handling;
+package com.github.albion.rest.command_handling;
 
 import com.github.maxopoly.angeliacore.connection.ServerConnection;
 

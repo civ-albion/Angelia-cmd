@@ -1,4 +1,4 @@
-package com.github.maxopoly.angelia_cmd.listener;
+package com.github.albion.rest.listener;
 
 import com.github.maxopoly.angeliacore.event.AngeliaEventHandler;
 import com.github.maxopoly.angeliacore.event.AngeliaListener;

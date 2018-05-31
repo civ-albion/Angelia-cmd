@@ -1,6 +1,6 @@
-package com.github.maxopoly.angelia_cmd.command_handling.commands;
+package com.github.albion.rest.command_handling.commands;
 
-import com.github.maxopoly.angelia_cmd.command_handling.Command;
+import com.github.albion.rest.command_handling.Command;
 import com.github.maxopoly.angeliacore.connection.ServerConnection;
 import java.util.List;
 

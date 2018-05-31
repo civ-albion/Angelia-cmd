@@ -1,14 +1,14 @@
-package com.github.maxopoly.angelia_cmd.command_handling;
+package com.github.albion.rest.command_handling;
 
-import com.github.maxopoly.angelia_cmd.command_handling.commands.DigDownCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.ExecutePluginCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.GetNameCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.GetPlayerStatsCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.HelpPluginCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.ListPluginCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.LogoutCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.MoveToCommand;
-import com.github.maxopoly.angelia_cmd.command_handling.commands.StopPluginCommand;
+import com.github.albion.rest.command_handling.commands.DigDownCommand;
+import com.github.albion.rest.command_handling.commands.ExecutePluginCommand;
+import com.github.albion.rest.command_handling.commands.GetNameCommand;
+import com.github.albion.rest.command_handling.commands.GetPlayerStatsCommand;
+import com.github.albion.rest.command_handling.commands.HelpPluginCommand;
+import com.github.albion.rest.command_handling.commands.ListPluginCommand;
+import com.github.albion.rest.command_handling.commands.LogoutCommand;
+import com.github.albion.rest.command_handling.commands.MoveToCommand;
+import com.github.albion.rest.command_handling.commands.StopPluginCommand;
 import com.github.maxopoly.angeliacore.connection.ServerConnection;
 import java.util.Arrays;
 import java.util.HashMap;

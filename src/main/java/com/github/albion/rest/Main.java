@@ -1,8 +1,8 @@
-package com.github.maxopoly.angelia_cmd;
+package com.github.albion.rest;
 
-import com.github.maxopoly.angelia_cmd.command_handling.CommandHandler;
-import com.github.maxopoly.angelia_cmd.listener.ChatListener;
-import com.github.maxopoly.angelia_cmd.listener.PlayerStateListener;
+import com.github.albion.rest.command_handling.CommandHandler;
+import com.github.albion.rest.listener.ChatListener;
+import com.github.albion.rest.listener.PlayerStateListener;
 import com.github.maxopoly.angeliacore.connection.ActiveConnectionManager;
 import com.github.maxopoly.angeliacore.connection.ServerConnection;
 import org.apache.logging.log4j.LogManager;
@@ -13,7 +13,7 @@ public class Main {
 	private static CommandHandler cmdHandler;
 	private static ActiveConnectionManager connManager;
 
-	public static void main(String[] args) {
+	public  void main(String[] args) {
 		connManager = ActiveConnectionManager.getInstance();
 		ServerConnection connection = StartUpCommandParser.parse(args, logger);
 		if (connection == null) {
