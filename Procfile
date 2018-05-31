@@ -1,1 +1,1 @@
-web: java -jar target/angelia-cmd-1.0.00.jar 
+web: java -jar target/angelia-cmd-1.0.00.jar --server.port=$PORT
