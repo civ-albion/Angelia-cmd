@@ -1,1 +1,1 @@
-web: java -jar target/agelia-cmd-1.0.00.jar 
+web: java -jar target/angelia-cmd-1.0.00.jar 
