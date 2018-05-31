@@ -54,11 +54,15 @@ public class BotController
                 .filter(u -> serverMap.containsKey(u.getServer()))
                 .forEach(u ->
                 {
+                    try {
                     manageConnection(u, serverMap.get(u.getServer()));
                     LOGGER.error("GOT ONE" + u.toString());
+                    } catch (Exception ex) {
+                        LOGGER.error("PROBLEM!!!!", ex);
+                    }
             try
             {
-                Thread.sleep(10000l);
+                Thread.sleep(20000l);
             } catch (InterruptedException ex)
             {
                 java.util.logging.Logger.getLogger(BotController.class.getName()).log(Level.SEVERE, null, ex);
